@@ -1,14 +1,18 @@
 print("Hey guys, im making a grade calculator in python")
 
 
-def forward_calculator():
-    grade = float(input("What is your grade? "))
-    exam_weight = float(input("What is the weight of the exam as a percentage? "))
-    exam_weight = exam_weight / 100  # Convert percentage to decimal
-    exam_score = float(input("What is your exam score? "))
-
+def forward_calculator(grade, exam_weight, exam_score):
+    exam_weight = exam_weight / 100
     final_calculation = grade * (1 - exam_weight) + exam_score * exam_weight
-    print(f"Your final grade is: {round(final_calculation, 1)}")
+    return final_calculation
+
+def run_forward_calculator():
+    grade = float(input("Enter your current grade: "))
+    exam_weight = float(input("Enter exam weight (%): "))
+    exam_score = float(input("Enter exam score: "))
+   
+    result = forward_calculator(grade, exam_weight, exam_score)
+    print(f"Your final grade is: {round(result, 2)}%")
 
 def backward_calculator():
     desired_grade = float(input("What is your desired final grade? "))
@@ -27,7 +31,7 @@ def main():
     print("2. Calculate what you need to score on the exam to achieve a desired final grade")
     choice = input("Enter 1 or 2: ")
     if choice == "1":
-        forward_calculator()
+        run_forward_calculator()
     elif choice == "2":
         backward_calculator()
     else:
