@@ -1,24 +1,37 @@
 # Grade Calculator
 
-A simple command-line tool to calculate your final grade or figure out what score you need on an exam to hit a target grade.
+A grade calculator that works in two directions: it can tell you your final
+grade given an exam score, or tell you what score you need on the exam to
+hit a target final grade.
+
+## Files
+
+- `grade_calculator.py` — terminal version with a menu
+- `grade_tracker_gui.py` — GUI version built with tkinter
+
+Both share the same calculation functions, so the math only lives in one place.
+
+## Running it
+
+Terminal version:
+
+    python3 grade_calculator.py
+
+GUI version:
+
+    python3 grade_tracker_gui.py
 
 ## Features
-- Calculate your final grade from your current grade, exam weight, and exam score
-- Calculate the score you need on an exam to reach a desired final grade
-- Flags when a target grade isn't mathematically reachable
 
-## Usage
-Run the script and follow the prompts:
-​```
-python3 grade_calculator.py
-​```
+- **Calculate Final Grade** — enter current grade, exam weight, and exam
+  score to get your final grade
+- **Score Needed on Exam** — enter current grade, exam weight, and desired
+  final grade to get the score you need, with a warning when the target
+  isn't reachable
+- Input validation — non-numeric entries show an error instead of crashing
+- The GUI saves your last inputs to `last_calculation.json` and reloads
+  them the next time you open it
 
-## Example
-​```
-Enter 1 or 2: 2
-What is your desired final grade? 90
-What is the weight of the exam as a percentage? 20
-What is your current grade? 84
-You need to score: 114.0 on the exam to achieve your desired final grade.
-Unfortunately, it is not possible to achieve your desired final grade with your current grade and the exam weight.
-​```
+## Built with
+
+Python 3, tkinter (standard library), json (standard library)

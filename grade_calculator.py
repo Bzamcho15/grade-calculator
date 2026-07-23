@@ -14,14 +14,19 @@ def run_forward_calculator():
     result = forward_calculator(grade, exam_weight, exam_score)
     print(f"Your final grade is: {round(result, 2)}%")
 
-def backward_calculator():
+def backward_calculator(desired_grade, exam_weight, current_grade):
+    exam_weight = exam_weight / 100
+    required_exam_score = (desired_grade - current_grade * (1 - exam_weight)) / exam_weight
+    return required_exam_score
+
+def run_backward_calculator():
     desired_grade = float(input("What is your desired final grade? "))
     exam_weight = float(input("What is the weight of the exam as a percentage? "))
-    exam_weight = exam_weight / 100 # Convert percentage to decimal
     current_grade = float(input("What is your current grade? "))
-    required_exam_score = (desired_grade - current_grade * (1 - exam_weight)) / exam_weight
-    print(f"You need to score: {round(required_exam_score, 1)} on the exam to achieve your desired final grade.")
-    if required_exam_score > 100:
+
+    required = backward_calculator(desired_grade, exam_weight, current_grade)
+    print(f"You need to score: {round(required, 1)} on the exam to achieve your desired final grade.")
+    if required > 100:
         print("Unfortunately, it is not possible to achieve your desired final grade with your current grade and the exam weight.")
 
 def main():
@@ -33,7 +38,7 @@ def main():
     if choice == "1":
         run_forward_calculator()
     elif choice == "2":
-        backward_calculator()
+        run_backward_calculator()
     else:
         print("Invalid choice. Please enter 1 or 2.")
 
